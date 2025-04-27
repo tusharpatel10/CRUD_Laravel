@@ -35,6 +35,17 @@ class CrudOperationsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'first_name' => 'required|min:3|max:10|string',
+            'last_name' => 'required|min:3|max:10|string',
+            'email' => 'required|email|unique:crud_operations,email',
+            'contact' => 'required|nullable',
+            'gender' => 'required|in:Male,Female',
+            'address' => 'nullable|string',
+            'country' => 'required|exists:countries,id'
+        ]);
+
+
         $requestData = $request->except(['_token', 'regist']);
 
 
@@ -43,12 +54,12 @@ class CrudOperationsController extends Controller
         $request->profile->move(public_path('profile', $imgName));
         $requestData['profile'] = $imgName;
 
-        /*  checked the data */
+        /* if checked the data */
         // echo "<pre>";
-        // print_r($imgName);
+        // print_r($requestData);
         // exit;
         $store = CrudOperations::create($requestData);
-        return redirect()->route('crud.index')->with('success','Data was Registered successfully');
+        return redirect()->route('crud.index')->with('success', 'Data was Registered successfully');
     }
 
     /**

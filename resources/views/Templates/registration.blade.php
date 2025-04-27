@@ -3,6 +3,17 @@
     <div class="album py-5" style="height:120vh;">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="card border-success" style="max-width: 65rem;padding: 2%;">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <h2> Registration </h2>
                 <hr>
                 <div class="card-body">

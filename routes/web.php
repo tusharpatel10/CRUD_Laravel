@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('Templates/registration');
+    return view('Templates/TypeJS');
 });
 
 Route::get('/register', function () {
